@@ -124,17 +124,44 @@ textarea:focus {
   padding: 22px 24px;
   min-height: 72px;
   transition: background 0.3s ease;
+  position: relative;
 }
 .output-card.has-content { background: #fafafb; }
 
+.output-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
 .output-label {
   font-size: 11px;
   font-weight: 600;
   color: #aeaeb2;
   text-transform: uppercase;
   letter-spacing: 0.8px;
-  margin-bottom: 10px;
 }
+.copy-btn {
+  display: none;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 590;
+  cursor: pointer;
+  border: none;
+  background: #e8e8ed;
+  color: #515154;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  outline: none;
+  white-space: nowrap;
+}
+.copy-btn:hover { background: #dcdce0; color: #1d1d1f; }
+.copy-btn:active { transform: scale(0.96); }
+.has-content .copy-btn { display: flex; }
+
 .output-text {
   font-size: 22px;
   font-weight: 600;
@@ -143,12 +170,14 @@ textarea:focus {
   letter-spacing: 0.8px;
   word-break: break-all;
   transition: color 0.2s ease;
+  padding-right: 80px;
 }
 .output-text.is-empty {
   color: #c7c7cc;
   font-size: 15px;
   font-weight: 400;
   letter-spacing: 0;
+  padding-right: 0;
 }
 
 /* ===== Examples (Pills) ===== */
@@ -209,6 +238,83 @@ textarea:focus {
   z-index: 100;
 }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ===== Mobile ===== */
+@media (max-width: 480px) {
+  body {
+    padding: 0;
+    align-items: flex-start;
+  }
+
+  .app {
+    border-radius: 0;
+    padding: 28px 20px 24px;
+    max-width: 100%;
+    min-height: 100vh;
+    box-shadow: none;
+  }
+
+  .header { margin-bottom: 28px; }
+  .header h1 { font-size: 26px; }
+  .header p { font-size: 13px; }
+
+  textarea {
+    font-size: 16px;
+    height: 100px;
+    padding: 14px 16px;
+    border-radius: 14px;
+  }
+
+  .actions {
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .btn {
+    padding: 12px 16px;
+    font-size: 14px;
+    border-radius: 11px;
+  }
+
+  .output-card {
+    padding: 18px 16px;
+    border-radius: 14px;
+  }
+  .output-text {
+    font-size: 19px;
+    padding-right: 0;
+  }
+  .output-text.is-empty { font-size: 14px; }
+  .copy-btn {
+    font-size: 12px;
+    padding: 5px 10px;
+    gap: 4px;
+    border-radius: 7px;
+  }
+
+  .examples { margin-top: 20px; gap: 6px; }
+  .pill {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+  .footer { margin-top: 20px; font-size: 11px; }
+
+  .toast {
+    bottom: 30px;
+    padding: 10px 22px;
+    font-size: 13px;
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 360px) {
+  .app { padding: 20px 14px 18px; }
+  .header h1 { font-size: 22px; }
+  textarea { height: 88px; font-size: 15px; }
+  .btn { padding: 10px 12px; font-size: 13px; }
+  .output-text { font-size: 17px; }
+  .pill { font-size: 11px; padding: 5px 10px; }
+}
 </style>
 </head>
 <body>
@@ -231,7 +337,13 @@ textarea:focus {
   </div>
 
   <div class="output-card" id="outputCard">
-    <div class="output-label">宜兴话发音</div>
+    <div class="output-header">
+      <div class="output-label">宜兴话发音</div>
+      <button class="copy-btn" onclick="copyResult()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        复制
+      </button>
+    </div>
     <div class="output-text is-empty" id="output">等待输入…</div>
   </div>
 
@@ -1035,7 +1147,13 @@ function convert() {
 function copyResult() {
   const output = document.getElementById("output").textContent;
   if (!output || output === "等待输入…") return;
-  navigator.clipboard.writeText(output).then(() => showToast("已复制到剪贴板"));
+  navigator.clipboard.writeText(output).then(() => {
+    const btn = document.querySelector(".copy-btn");
+    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 已复制';
+    setTimeout(() => {
+      btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> 复制';
+    }, 1800);
+  });
 }
 
 function clearAll() {
