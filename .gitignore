@@ -1,0 +1,4 @@
+.playwright-mcp/
+convert.py
+*.png
+.DS_Store

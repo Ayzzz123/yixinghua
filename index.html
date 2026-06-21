@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>普通话 → 宜兴话</title>
+<style>
+/* ===== Apple-Style Reset & Base ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang SC", "Helvetica Neue", sans-serif;
+  background: #f5f5f7;
+  color: #1d1d1f;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== Card Container ===== */
+.app {
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 48px 44px 40px;
+  width: 100%;
+  max-width: 680px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 40px rgba(0,0,0,0.06);
+  transition: box-shadow 0.4s ease;
+}
+.app:focus-within {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 16px 56px rgba(0,0,0,0.10);
+}
+
+/* ===== Header ===== */
+.header { text-align: center; margin-bottom: 40px; }
+.header h1 {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  color: #1d1d1f;
+  margin-bottom: 6px;
+}
+.header p {
+  font-size: 15px;
+  color: #86868b;
+  font-weight: 400;
+  letter-spacing: 0.1px;
+}
+
+/* ===== Input ===== */
+.input-wrap { margin-bottom: 20px; }
+.input-wrap label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #86868b;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 8px;
+}
+textarea {
+  width: 100%;
+  height: 112px;
+  border: 1.5px solid #e8e8ed;
+  border-radius: 16px;
+  padding: 16px 18px;
+  font-size: 17px;
+  font-family: inherit;
+  line-height: 1.7;
+  color: #1d1d1f;
+  background: #fafafa;
+  resize: vertical;
+  transition: all 0.25s ease;
+  outline: none;
+}
+textarea::placeholder { color: #c7c7cc; }
+textarea:focus {
+  border-color: #0071e3;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(0,113,227,0.08);
+}
+
+/* ===== Buttons ===== */
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+.btn {
+  padding: 12px 28px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 590;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  letter-spacing: -0.1px;
+  transition: all 0.2s ease;
+  outline: none;
+}
+.btn:active { transform: scale(0.97); }
+
+.btn-primary {
+  background: #0071e3;
+  color: #fff;
+  flex: 1;
+}
+.btn-primary:hover { background: #0077ed; }
+
+.btn-ghost {
+  background: #f5f5f7;
+  color: #1d1d1f;
+}
+.btn-ghost:hover { background: #e8e8ed; }
+
+/* ===== Output ===== */
+.output-card {
+  background: #f5f5f7;
+  border-radius: 18px;
+  padding: 22px 24px;
+  min-height: 72px;
+  transition: background 0.3s ease;
+}
+.output-card.has-content { background: #fafafb; }
+
+.output-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #aeaeb2;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 10px;
+}
+.output-text {
+  font-size: 22px;
+  font-weight: 600;
+  color: #1d1d1f;
+  line-height: 1.7;
+  letter-spacing: 0.8px;
+  word-break: break-all;
+  transition: color 0.2s ease;
+}
+.output-text.is-empty {
+  color: #c7c7cc;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+/* ===== Examples (Pills) ===== */
+.examples {
+  margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.examples-label {
+  font-size: 12px;
+  color: #aeaeb2;
+  line-height: 30px;
+  margin-right: 4px;
+}
+.pill {
+  background: #f5f5f7;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  padding: 7px 15px;
+  font-size: 13px;
+  color: #515154;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+.pill:hover {
+  background: #fff;
+  border-color: #d2d2d7;
+  color: #1d1d1f;
+}
+
+/* ===== Footer ===== */
+.footer {
+  text-align: center;
+  margin-top: 28px;
+  font-size: 12px;
+  color: #aeaeb2;
+  letter-spacing: 0.2px;
+}
+
+/* ===== Toast ===== */
+.toast {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: #1d1d1f;
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  opacity: 0;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  z-index: 100;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <div class="header">
+    <h1>普通话 → 宜兴话</h1>
+    <p>输入中文，输出宜兴方言近音转写</p>
+  </div>
+
+  <div class="input-wrap">
+    <label for="input">输入</label>
+    <textarea id="input" placeholder="试试输入：我喜欢你、今天天气真好、你在做什么…" autofocus></textarea>
+  </div>
+
+  <div class="actions">
+    <button class="btn btn-primary" onclick="convert()">转换为宜兴话</button>
+    <button class="btn btn-ghost" onclick="copyResult()">复制</button>
+    <button class="btn btn-ghost" onclick="clearAll()">清空</button>
+  </div>
+
+  <div class="output-card" id="outputCard">
+    <div class="output-label">宜兴话发音</div>
+    <div class="output-text is-empty" id="output">等待输入…</div>
+  </div>
+
+  <div class="examples">
+    <span class="examples-label">试试</span>
+    <span class="pill" data-text="我喜欢你">我喜欢你</span>
+    <span class="pill" data-text="你在做什么">你在做什么</span>
+    <span class="pill" data-text="今天天气真好">今天天气真好</span>
+    <span class="pill" data-text="这个东西多少钱">这个东西多少钱</span>
+    <span class="pill" data-text="我不知道">我不知道</span>
+    <span class="pill" data-text="快一点过来">快一点过来</span>
+    <span class="pill" data-text="大家好，我是宜兴人">我是宜兴人</span>
+    <span class="pill" data-text="你好，吃饭了吗">吃饭了吗</span>
+  </div>
+
+  <div class="footer">宜兴话属吴语太湖片毗陵小片 · 发音存在地域差异</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// 普通话 → 宜兴话 发音字典（450+ 条目）
+// 数据来源：朱爱平《宜兴方言篇》、叶祥苓《宜兴方言同音字汇》、
+//           知乎宜兴方言研究、百度贴吧宜兴话吧
+// ═══════════════════════════════════════════════════════════════
+
+const dict = {
+
+  // ── 三字及以上（优先匹配）─────────────────────────
+
+  "怎么办": "乃酿佬弄",
+  "怎么样": "乃酿佬",
+  "为什么": "奈点咯",
+  "一点点": "一眯眯",
+  "差不多": "差勿多",
+  "说不定": "讲勿定",
+  "没关系": "勿碍事",
+  "快一点": "浩稍点",
+  "多少钱": "几化铜钱",
+  "多少钱": "几化铜钱",
+  "实际上": "实骨这",
+
+  // ── 双字词：代词／疑问 ──────────────────────────
+
+  "这个": "格个",
+  "那个": "告个",
+  "哪里": "哪块",
+  "什么": "底个",
+  "怎么": "乃酿",
+  "多少": "几化",
+  "我们": "吾多",
+  "你们": "尼多",
+  "他们": "拖个",
+  "大家": "大姑",
+
+  // ── 双字词：时间 ────────────────────────────────
+
+  "今天": "今啊",
+  "明天": "明朝",
+  "昨天": "昨啊",
+  "后天": "后啊",
+  "上午": "上昼",
+  "中午": "中昼",
+  "下午": "下昼",
+  "时候": "辰光",
+  "上次": "上朝",
+
+  // ── 双字词：日常表达 ────────────────────────────
+
+  "你好": "尼好",
+  "谢谢": "下下",
+  "喜欢": "灰洗",
+  "知道": "晓得",
+  "不知道": "勿晓得",
+  "不要": "覅",
+  "没有": "呒来",
+  "睡觉": "睏觉",
+  "起床": "爬起来",
+  "回家": "转去",
+  "吃饭": "切饭",
+  "东西": "物事",
+  "事情": "事体",
+  "地方": "场化",
+  "朋友": "朋友",
+  "时间": "辰光",
+  "天气": "天气",
+  "太阳": "日头",
+  "月亮": "亮月",
+  "下雨": "落雨",
+  "下雪": "落雪",
+  "打雷": "打辰头",
+  "闪电": "打霍睒",
+  "毛毛雨": "濛淞雨",
+  "全部": "夯拨浪当",
+  "洗澡": "汏浴",
+  "游泳": "游水",
+  "做饭": "烧饭",
+  "聊天": "讲张",
+  "吵架": "吵相骂",
+  "讨厌": "触气",
+  "舒服": "适意",
+  "漂亮": "标致",
+  "干净": "清爽",
+  "厉害": "结棍",
+  "可怜": "罪过",
+  "聪明": "灵光",
+  "麻烦": "劳嘈",
+  "容易": "便当",
+  "困难": "烦难",
+  "热闹": "闹热",
+  "爽快": "爽气",
+  "特地": "为当当",
+  "要紧": "紧干",
+
+  // ── 双字词：人物称谓 ────────────────────────────
+
+  "爸爸": "爹爹",
+  "妈妈": "姆妈",
+  "爷爷": "公公",
+  "奶奶": "亲娘",
+  "外公": "舅公",
+  "外婆": "舅婆",
+  "儿子": "伢儿",
+  "女儿": "丫头",
+  "小孩": "小佬",
+  "老人": "老佬",
+  "父母": "娘老子",
+  "朋友": "朋友",
+  "男孩": "小伙子",
+  "女孩": "大小娘",
+  "继母": "蛮娘",
+
+  // ── 双字词：饮食 ──────────────────────────────────
+
+  "午饭": "昼饭",
+  "鸡蛋": "鸡子",
+  "鸭蛋": "鸭子",
+  "南瓜": "饭瓜",
+  "温水": "温吞水",
+  "开水": "滚水",
+  "茶叶": "茶叶茶",
+
+  // ── 双字词：动作／状态 ──────────────────────────
+
+  "小心": "把细",
+  "努力": "巴结",
+  "能干": "来三",
+  "玩耍": "别相",
+  "睡觉": "睏觉",
+  "知道": "晓得",
+  "过来": "过来",
+  "出去": "出去",
+  "进来": "进来",
+  "回去": "转去",
+  "躲藏": "畔起",
+
+  // ── 单字：代词 ──────────────────────────────────
+
+  "我": "吾",
+  "你": "尼",
+  "他": "拖",
+  "她": "拖",
+  "它": "拖",
+  "这": "格",
+  "那": "告",
+  "哪": "哪",
+  "谁": "啥人",
+
+  // ── 单字：数字 ──────────────────────────────────
+
+  "一": "叶",
+  "二": "腻",
+  "三": "山",
+  "四": "自",
+  "五": "唔",
+  "六": "落",
+  "七": "切",
+  "八": "八",
+  "九": "九",
+  "十": "十",
+  "百": "百",
+  "千": "千",
+  "万": "蛙",
+
+  // ── 单字：常用动词 ──────────────────────────────
+
+  "是": "实",
+  "有": "有",
+  "没": "朆",
+  "在": "来",
+  "去": "气",
+  "来": "来",
+  "做": "作",
+  "弄": "弄",
+  "说": "雪",
+  "讲": "更",
+  "看": "可",
+  "见": "见",
+  "听": "听",
+  "吃": "切",
+  "喝": "哈",
+  "走": "走",
+  "跑": "袍",
+  "坐": "祖",
+  "站": "再",
+  "睡": "困",
+  "醒": "醒",
+  "叫": "叫",
+  "喊": "哈",
+  "笑": "笑",
+  "哭": "哭",
+  "打": "当",
+  "开": "开",
+  "关": "关",
+  "给": "博",
+  "拿": "拿",
+  "放": "放",
+  "想": "想",
+  "要": "要",
+  "会": "为",
+  "能": "能",
+  "让": "让",
+  "问": "门",
+  "买": "买",
+  "卖": "卖",
+  "找": "找",
+  "用": "用",
+  "进": "近",
+  "出": "缺",
+  "回": "回",
+  "过": "过",
+  "到": "到",
+  "洗": "汏",
+  "穿": "穿",
+  "写": "写",
+  "读": "读",
+  "唱": "唱",
+  "飞": "飞",
+  "游": "游",
+
+  // ── 单字：常用名词 ──────────────────────────────
+
+  "人": "宁",
+  "家": "哥",
+  "门": "门",
+  "窗": "窗",
+  "桌": "桌",
+  "椅": "椅",
+  "床": "床",
+  "饭": "万",
+  "菜": "擦",
+  "汤": "汤",
+  "茶": "作",
+  "酒": "九",
+  "水": "许",
+  "火": "虎",
+  "山": "山",
+  "河": "胡",
+  "路": "路",
+  "车": "车",
+  "船": "船",
+  "鱼": "女",
+  "肉": "肉",
+  "鸡": "鸡",
+  "鸭": "ā",
+  "狗": "狗",
+  "猫": "猫",
+  "花": "花",
+  "草": "草",
+  "树": "许",
+  "叶": "叶",
+  "天": "天",
+  "地": "地",
+  "风": "风",
+  "雨": "雨",
+  "雪": "雪",
+  "云": "云",
+  "日": "涅",
+  "月": "月",
+  "星": "兴",
+  "兴": "兴",
+  "宜兴": "泥兴",
+  "钱": "前",
+  "书": "需",
+  "纸": "纸",
+  "笔": "笔",
+  "字": "实",
+  "心": "新",
+  "身": "身",
+  "手": "手",
+  "眼": "眼",
+  "耳": "泥",
+  "口": "口",
+  "面": "面",
+  "头": "兜",
+  "脚": "脚",
+  "牙": "牙",
+  "饭": "万",
+  "蛋": "蛋",
+  "衣": "衣",
+  "鞋": "鞋",
+  "袜": "纳",
+  "帽": "帽",
+  "灯": "灯",
+  "电": "电",
+  "话": "窝",
+  "事": "实",
+  "时": "时",
+  "年": "年",
+  "今": "今",
+  "明": "明",
+  "昨": "昨",
+  "气": "气",
+  "真": "怎",
+  "声": "身",
+  "色": "实",
+  "味": "为",
+  "梦": "梦",
+  "影": "影",
+  "歌": "勾",
+  "药": "哟",
+  "病": "病",
+  "力": "力",
+  "名": "明",
+  "男": "乃",
+  "女": "女",
+  "爸": "爹",
+  "妈": "娘",
+  "哥": "勾",
+  "姐": "姐",
+  "弟": "地",
+  "妹": "妹",
+
+  // ── 单字：常用形容词 ────────────────────────────
+
+  "好": "好",
+  "坏": "坏",
+  "大": "渡",
+  "小": "小",
+  "多": "兜",
+  "少": "扫",
+  "高": "高",
+  "矮": "ǎ",
+  "长": "长",
+  "短": "短",
+  "新": "新",
+  "旧": "旧",
+  "快": "快",
+  "慢": "妈",
+  "热": "涅",
+  "冷": "浪",
+  "甜": "甜",
+  "苦": "苦",
+  "酸": "酸",
+  "咸": "ǎ",
+  "香": "香",
+  "臭": "臭",
+  "红": "红",
+  "白": "博",
+  "黑": "喝",
+  "黄": "黄",
+  "绿": "落",
+  "蓝": "拉",
+  "胖": "胖",
+  "瘦": "瘦",
+  "忙": "忙",
+  "空": "空",
+  "对": "对",
+  "错": "错",
+  "远": "远",
+  "近": "近",
+  "轻": "轻",
+  "重": "重",
+  "厚": "勾",
+  "薄": "博",
+  "硬": "硬",
+  "软": "软",
+  "亮": "亮",
+  "暗": "ě",
+  "干": "革",
+  "湿": "湿",
+  "满": "满",
+  "空": "空",
+  "老": "老",
+  "嫩": "嫩",
+  "生": "桑",
+  "熟": "熟",
+  "快活": "开心",
+
+  // ── 单字：虚词／其他常用 ──────────────────────────
+
+  "不": "勿",
+  "勿": "勿",
+  "很": "蛮",
+  "太": "太",
+  "都": "兜",
+  "也": "也",
+  "还": "ǎ",
+  "就": "就",
+  "才": "实",
+  "又": "又",
+  "再": "再",
+  "最": "最",
+  "更": "更",
+  "只": "织",
+  "个": "个",
+  "的": "个",
+  "了": "咧",
+  "着": "则",
+  "吧": "吧",
+  "吗": "伐",
+  "呢": "呢",
+  "啊": "阿",
+  "和": "胡",
+  "把": "博",
+  "被": "被",
+  "从": "从",
+  "到": "到",
+  "往": "往",
+  "上": "上",
+  "下": "下",
+  "前": "前",
+  "后": "欧",
+  "左": "祖",
+  "右": "又",
+  "里": "里",
+  "外": "坏",
+  "边": "边",
+  "中": "中",
+  "间": "嘎",
+
+  // ── 更多单字补充（基于朱爱平资料）─────────────────
+
+  "晚": "ǎ",
+  "咸": "ǎ",
+  "闲": "ǎ",
+  "狭": "ǎ",
+  "鸭": "ā",
+  "押": "ā",
+  "暗": "ě",
+  "寒": "ě",
+  "汗": "ě",
+  "额": "额",
+  "咬": "咬",
+  "牙": "牙",
+  "饿": "饿",
+  "熬": "熬",
+  "呆": "呆",
+  "绊": "八",
+  "盘": "盘",
+  "半": "半",
+  "伴": "半",
+  "勃": "半",
+  "把": "博",
+  "巴": "博",
+  "爬": "博",
+  "薄": "博",
+  "防": "旁",
+  "蓬": "蓬",
+  "逢": "蓬",
+  "抚": "补",
+  "差": "车",
+  "叉": "车",
+  "车": "车",
+  "扯": "插",
+  "窜": "彻",
+  "促": "错",
+  "触": "错",
+  "龊": "错",
+  "册": "册",
+  "拆": "册",
+  "尺": "册",
+  "策": "册",
+  "察": "册",
+  "春": "春",
+  "吹": "区",
+  "大": "渡",
+  "端": "得",
+  "团": "德",
+  "断": "得",
+  "跌": "跌",
+  "铁": "铁",
+  "踢": "踢",
+  "笃": "督",
+  "督": "督",
+  "度": "度",
+  "读": "读",
+  "毒": "读",
+  "独": "读",
+  "风": "风",
+  "无": "无",
+  "文": "文",
+  "万": "万",
+  "饭": "万",
+  "罚": "罚",
+  "乏": "罚",
+  "伐": "罚",
+  "房": "房",
+  "放": "放",
+  "飞": "飞",
+  "费": "费",
+  "肥": "肥",
+  "街": "嘎",
+  "间": "嘎",
+  "夹": "嘎",
+  "讲": "更",
+  "港": "更",
+  "江": "刚",
+  "家": "哥",
+  "加": "哥",
+  "搁": "哥",
+  "假": "果",
+  "架": "果",
+  "挂": "果",
+  "角": "各",
+  "阁": "各",
+  "干": "革",
+  "肝": "革",
+  "赶": "葛",
+  "敢": "葛",
+  "感": "葛",
+  "瞎": "哈",
+  "学": "花",
+  "花": "花",
+  "虾": "花",
+  "化": "化",
+  "蟹": "蟹",
+  "鞋": "鞋",
+  "杏": "函",
+  "行": "形",
+  "形": "形",
+  "幸": "形",
+  "横": "横",
+  "和": "胡",
+  "河": "胡",
+  "腐": "胡",
+  "喉": "胡",
+  "画": "窝",
+  "话": "窝",
+  "娃": "窝",
+  "户": "户",
+  "换": "为",
+  "下": "下",
+  "夏": "下",
+  "后": "欧",
+  "屋": "哦",
+  "恶": "哦",
+  "朱": "居",
+  "猪": "居",
+  "珠": "居",
+  "嘴": "举",
+  "主": "举",
+  "住": "举",
+  "注": "举",
+  "醉": "举",
+  "节": "家",
+  "脚": "脚",
+  "群": "军",
+  "裙": "军",
+  "铅": "咖",
+  "敲": "拷",
+  "看": "可",
+  "冷": "浪",
+  "六": "落",
+  "绿": "落",
+  "碌": "落",
+  "乱": "勒",
+  "捞": "撩",
+  "来": "来",
+  "蓝": "拉",
+  "路": "路",
+  "辣": "辣",
+  "腊": "辣",
+  "落": "落",
+  "力": "力",
+  "立": "力",
+  "栗": "力",
+  "麻": "模",
+  "马": "莫",
+  "骂": "莫",
+  "磨": "毛",
+  "馒": "满",
+  "满": "满",
+  "瞒": "满",
+  "网": "忙",
+  "忘": "网",
+  "望": "网",
+  "梦": "梦",
+  "尾": "咪",
+  "袜": "纳",
+  "男": "乃",
+  "南": "乃",
+  "难": "难",
+  "暖": "乃",
+  "宜": "泥",
+  "疑": "泥",
+  "蚁": "泥",
+  "毅": "泥",
+  "二": "腻",
+  "腻": "腻",
+  "日": "涅",
+  "热": "念",
+  "人": "宁",
+  "迎": "宁",
+  "认": "佞",
+  "鱼": "女",
+  "肉": "肉",
+  "浓": "浓",
+  "农": "浓",
+  "月": "月",
+  "软": "软",
+  "元": "元",
+  "原": "元",
+  "愿": "元",
+  "婆": "袍",
+  "破": "炮",
+  "怕": "破",
+  "碰": "胖",
+  "去": "气",
+  "吃": "切",
+  "出": "缺",
+  "却": "雀",
+  "雀": "雀",
+  "确": "雀",
+  "吹": "区",
+  "全": "学",
+  "前": "前",
+  "钱": "前",
+  "贱": "前",
+  "情": "兴",
+  "晴": "兴",
+  "就": "就",
+  "嚼": "学",
+  "拾": "西",
+  "说": "雪",
+  "水": "许",
+  "岁": "许",
+  "树": "许",
+  "聚": "许",
+  "斜": "斜",
+  "邪": "斜",
+  "入": "血",
+  "绝": "血",
+  "是": "实",
+  "贼": "实",
+  "自": "自",
+  "生": "桑",
+  "石": "石",
+  "杂": "石",
+  "沙": "沙",
+  "蛇": "蛇",
+  "射": "萨",
+  "眨": "萨",
+  "酸": "酸",
+  "衫": "山",
+  "色": "实",
+  "涩": "实",
+  "熟": "熟",
+  "俗": "熟",
+  "缩": "沙",
+  "叔": "沙",
+  "束": "沙",
+  "属": "熟",
+  "十": "十",
+  "拾": "西",
+  "食": "十",
+  "实": "十",
+  "失": "湿",
+  "湿": "湿",
+  "室": "湿",
+  "式": "湿",
+  "识": "湿",
+  "始": "始",
+  "世": "自",
+  "势": "自",
+  "试": "自",
+  "示": "自",
+  "市": "自",
+  "事": "实",
+  "他": "拖",
+  "探": "忐",
+  "铁": "铁",
+  "踢": "踢",
+  "痛": "痛",
+  "通": "通",
+  "同": "东",
+  "铜": "东",
+  "童": "东",
+  "统": "统",
+  "筒": "懂",
+  "动": "洞",
+  "洞": "洞",
+  "头": "兜",
+  "投": "兜",
+  "透": "透",
+  "偷": "偷",
+  "豆": "豆",
+  "斗": "斗",
+  "一": "叶",
+  "药": "哟",
+  "浴": "哟",
+  "野": "哟",
+  "夜": "夜",
+  "越": "越",
+  "阅": "越",
+  "县": "院",
+  "雄": "雄",
+  "上": "上",
+  "让": "让",
+  "弦": "耶",
+  "贤": "耶",
+  "嫌": "耶",
+  "查": "作",
+  "渣": "作",
+  "粥": "作",
+  "茶": "作",
+  "抓": "作",
+  "子": "则",
+  "指": "织",
+  "汁": "织",
+  "织": "织",
+  "缠": "这",
+  "炸": "炸",
+  "摘": "扎",
+  "只": "织",
+  "这": "嘎",
+  "着": "再",
+  "桌": "桌",
+  "捉": "桌",
+  "撞": "撞",
+
+  // ── 宜兴话特有表达 ──────────────────────────────
+
+  "不要": "覅",
+  "没有": "朆",
+  "不曾": "朆",
+  "玩耍": "别相",
+  "玩": "别相",
+  "不会": "勿会",
+  "不能": "勿好",
+  "干什么": "做底个",
+  "怎么样": "乃酿佬",
+};
+
+// ═══════════════════════════════════════════════════════════════
+// 转换引擎
+// ═══════════════════════════════════════════════════════════════
+
+const sortedKeys = Object.keys(dict).sort((a, b) => b.length - a.length);
+
+function convert() {
+  const input = document.getElementById("input").value.trim();
+  const outputEl = document.getElementById("output");
+  const outputCard = document.getElementById("outputCard");
+
+  if (!input) {
+    outputEl.textContent = "等待输入…";
+    outputEl.className = "output-text is-empty";
+    outputCard.classList.remove("has-content");
+    return;
+  }
+
+  let text = input;
+  let result = [];
+  let i = 0;
+
+  while (i < text.length) {
+    let matched = false;
+
+    for (const key of sortedKeys) {
+      if (key.length <= text.length - i && text.substring(i, i + key.length) === key) {
+        result.push(dict[key]);
+        i += key.length;
+        matched = true;
+        break;
+      }
+    }
+
+    if (!matched) {
+      const char = text[i];
+      if (dict[char]) {
+        result.push(dict[char]);
+      } else {
+        result.push(char);
+      }
+      i++;
+    }
+  }
+
+  let outputText = result.join(" ");
+  // 清理中文标点空格
+  outputText = outputText.replace(/\s*([，。！？、：；""''（）【】《》…—])\s*/g, "$1");
+  outputText = outputText.trim();
+
+  outputEl.textContent = outputText;
+  outputEl.className = "output-text";
+  outputCard.classList.add("has-content");
+}
+
+function copyResult() {
+  const output = document.getElementById("output").textContent;
+  if (!output || output === "等待输入…") return;
+  navigator.clipboard.writeText(output).then(() => showToast("已复制到剪贴板"));
+}
+
+function clearAll() {
+  document.getElementById("input").value = "";
+  const outputEl = document.getElementById("output");
+  const outputCard = document.getElementById("outputCard");
+  outputEl.textContent = "等待输入…";
+  outputEl.className = "output-text is-empty";
+  outputCard.classList.remove("has-content");
+  document.getElementById("input").focus();
+}
+
+function showToast(msg) {
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(t._tid);
+  t._tid = setTimeout(() => t.classList.remove("show"), 1800);
+}
+
+// ═══════════════════════════════════════════════════════════════
+// 事件绑定
+// ═══════════════════════════════════════════════════════════════
+
+document.getElementById("input").addEventListener("keydown", function(e) {
+  if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); convert(); }
+});
+
+document.querySelectorAll(".pill").forEach(pill => {
+  pill.addEventListener("click", function() {
+    document.getElementById("input").value = this.dataset.text;
+    convert();
+  });
+});
+
+// 页面加载时自动转换示例
+window.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("input").value = "我喜欢你";
+  convert();
+});
+</script>
+</body>
+</html>
